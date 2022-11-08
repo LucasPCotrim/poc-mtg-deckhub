@@ -1,0 +1,7 @@
+.env
+
+dist
+
+src/database/cards.js
+
+node_modules/
