@@ -1,8 +1,10 @@
 import decksRepository from '../repositories/decksRepository.js';
+import cardsRepository from '../repositories/cardsRepository.js';
 import formatsRepository from '../repositories/formatsRepository.js';
 import { Request, Response } from 'express';
 import { clientError } from '../errors/clientError.js';
 import { serverError } from '../errors/serverError.js';
+const hundredCardFormats = ['commander', 'historicbrawl'];
 
 async function getUserDecks(req: Request, res: Response) {
   const user = res.locals.user;
@@ -27,6 +29,11 @@ async function createUserDeck(req: Request, res: Response) {
     }
     const format = formatResult.rows[0];
 
+    const existingDeckResult = await decksRepository.getDeckByName(deckName);
+    if (existingDeckResult.rowCount > 0) {
+      return res.status(409).send(clientError(409, 'Invalid deck name!'));
+    }
+
     await decksRepository.insertDeck({ name: deckName, formatId: format.id, userId: user.id });
     return res.status(201).send({ message: 'Deck created successfully!' });
   } catch (error) {
@@ -35,4 +42,43 @@ async function createUserDeck(req: Request, res: Response) {
   }
 }
 
-export { getUserDecks, createUserDeck };
+async function updateUserDeck(req: Request, res: Response) {
+  const user = res.locals.user;
+  const oldDeckName = req.params.deckName;
+  const { deckName, formatName, cards } = req.body;
+
+  try {
+    const oldDeckResult = await decksRepository.getDeckByName(oldDeckName);
+    if (oldDeckResult.rowCount === 0) {
+      return res.status(404).send(clientError(404, `Deck "${oldDeckName}" not found`));
+    }
+    const deck = oldDeckResult.rows[0];
+    const oldFormatName = deck.format_name;
+
+    const nTotalCards = cards.reduce((acc, obj) => acc + obj.amount, 0);
+    const newFormat = formatName || oldFormatName;
+    const newDeckName = deckName || oldDeckName;
+
+    if (nTotalCards < 60 || (hundredCardFormats.indexOf(newFormat) !== -1 && nTotalCards !== 100)) {
+      return res.status(406).send(clientError(406, 'Invalid number of cards in deck!'));
+    }
+
+    for (const card of cards) {
+      const result = await cardsRepository.getCardByName(card.cardName);
+      if (result.rowCount === 0) {
+        return res.status(404).send(clientError(404, `Card "${card.cardName}" not found!`));
+      }
+      card.id = result.rows[0].id;
+    }
+
+    for (const card of cards) {
+      await decksRepository.insertCardIntoDeck(card.id, deck.id, card.amount);
+    }
+    return res.status(200).send({ message: `Successfully updated deck!` });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(serverError(500, 'Unable to connect to database!'));
+  }
+}
+
+export { getUserDecks, createUserDeck, updateUserDeck };

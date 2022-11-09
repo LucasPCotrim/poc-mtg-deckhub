@@ -9,6 +9,14 @@ async function getFormatByName(name: string): Promise<QueryResult> {
   );
 }
 
-const formatsRepository = { getFormatByName };
+async function getFormatById(id: number): Promise<QueryResult> {
+  return db.query(
+    `SELECT * FROM formats
+    WHERE id = $1`,
+    [id]
+  );
+}
+
+const formatsRepository = { getFormatByName, getFormatById };
 
 export default formatsRepository;

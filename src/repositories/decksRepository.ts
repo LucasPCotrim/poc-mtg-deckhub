@@ -4,9 +4,31 @@ import { Deck } from './../protocols/deck';
 
 async function getDecksByUserId(userId: number): Promise<QueryResult> {
   return db.query(
-    `SELECT * FROM decks
-    WHERE user_id = $1`,
+    `SELECT
+      d.id,
+      d.user_id,
+      d.name,
+      f.name AS format_name
+    FROM
+      decks d
+      JOIN formats f ON d.format_id = f.id
+    WHERE d.user_id = $1`,
     [userId]
+  );
+}
+
+async function getDeckByName(deckName: string): Promise<QueryResult> {
+  return db.query(
+    `SELECT
+      d.id,
+      d.user_id,
+      d.name,
+      f.name AS format_name
+    FROM
+      decks d
+      JOIN formats f ON d.format_id = f.id
+    WHERE d.name = $1`,
+    [deckName]
   );
 }
 
@@ -20,6 +42,21 @@ async function insertDeck(deck: Deck): Promise<QueryResult> {
   );
 }
 
-const decksRepository = { getDecksByUserId, insertDeck };
+async function insertCardIntoDeck(
+  cardId: number,
+  deckId: number,
+  amount: number
+): Promise<QueryResult> {
+  console.log('--------------------------insertCardIntoDeck');
+  return db.query(
+    `INSERT INTO cards_decks
+    ("card_id", "deck_id", "amount")
+    VALUES
+    ($1, $2, $3)`,
+    [cardId, deckId, amount]
+  );
+}
+
+const decksRepository = { getDecksByUserId, getDeckByName, insertDeck, insertCardIntoDeck };
 
 export default decksRepository;

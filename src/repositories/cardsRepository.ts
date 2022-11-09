@@ -49,6 +49,14 @@ async function insertCard(card: Card): Promise<QueryResult> {
   );
 }
 
-const cardsRepository = { getCards, insertCard };
+async function getCardByName(name: string): Promise<QueryResult> {
+  console.log('--------------------------getCardByName');
+  return db.query(
+    `SELECT * FROM cards
+    WHERE name ILIKE $token$${name}$token$`
+  );
+}
+
+const cardsRepository = { getCards, insertCard, getCardByName };
 
 export default cardsRepository;

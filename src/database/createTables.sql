@@ -34,7 +34,7 @@ INSERT INTO "formats"("name") VALUES ('historicbrawl');
 CREATE TABLE "decks" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INTEGER NOT NULL REFERENCES "users"("id"),
-  "name" TEXT NOT NULL,
+  "name" TEXT UNIQUE NOT NULL,
   "format_id" INTEGER NOT NULL REFERENCES "formats"("id"),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
@@ -59,5 +59,6 @@ CREATE TABLE "cards" (
 CREATE TABLE "cards_decks" (
   "id" SERIAL PRIMARY KEY,
   "card_id" INTEGER NOT NULL REFERENCES "cards"("id") ON DELETE CASCADE,
-  "deck_id" INTEGER NOT NULL REFERENCES "decks"("id") ON DELETE CASCADE
+  "deck_id" INTEGER NOT NULL REFERENCES "decks"("id") ON DELETE CASCADE,
+  "amount" INTEGER NOT NULL
 );

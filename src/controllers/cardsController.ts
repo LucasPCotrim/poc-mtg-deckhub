@@ -24,7 +24,7 @@ async function loadCardsDatabase(req: Request, res: Response) {
     for (const card of cards) {
       if (card.layout === 'art_series') continue;
       if (card.games.indexOf('paper') < 0) continue;
-      if (!card.prices.usd) continue;
+      if (!card.prices.usd) card.prices.usd = 0;
       if (card.border_color === 'silver') continue;
 
       const cardToAdd = {
