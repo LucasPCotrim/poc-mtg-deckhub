@@ -1,5 +1,6 @@
-DROP TABLE "users";
-DROP TABLE "sessions";
-DROP TABLE "cards";
-DROP TABLE "decks";
-DROP TABLE "cards_decks";
+DROP TABLE "users" CASCADE;
+DROP TABLE "sessions" CASCADE;
+DROP TABLE "cards" CASCADE;
+DROP TABLE "decks" CASCADE;
+DROP TABLE "formats" CASCADE;
+DROP TABLE "cards_decks" CASCADE;

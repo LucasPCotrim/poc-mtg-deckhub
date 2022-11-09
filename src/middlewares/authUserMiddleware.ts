@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 import sessionRepository from '../repositories/sessionsRepository.js';
 import { clientError } from '../errors/clientError.js';
 import { serverError } from '../errors/serverError.js';
 
-async function authenticateUser(req, res, next) {
+async function authenticateUser(req: Request, res: Response, next: NextFunction) {
   const authorization = req.headers.authorization;
   const token = authorization?.replace('Bearer ', '');
 
@@ -26,7 +27,6 @@ async function authenticateUser(req, res, next) {
     }
     return res.status(500).send(serverError(500, 'Unable to connect to database!'));
   }
-
   next();
 }
 

@@ -15,11 +15,27 @@ CREATE TABLE "sessions" (
 	"created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE "formats" (
+  "id" SERIAL PRIMARY KEY,
+	"name" TEXT NOT NULL
+);
+
+INSERT INTO "formats"("name") VALUES ('standard');
+INSERT INTO "formats"("name") VALUES ('historic');
+INSERT INTO "formats"("name") VALUES ('pioneer');
+INSERT INTO "formats"("name") VALUES ('explorer');
+INSERT INTO "formats"("name") VALUES ('modern');
+INSERT INTO "formats"("name") VALUES ('legacy');
+INSERT INTO "formats"("name") VALUES ('pauper');
+INSERT INTO "formats"("name") VALUES ('vintage');
+INSERT INTO "formats"("name") VALUES ('commander');
+INSERT INTO "formats"("name") VALUES ('historicbrawl');
+
 CREATE TABLE "decks" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INTEGER NOT NULL REFERENCES "users"("id"),
   "name" TEXT NOT NULL,
-  "format" TEXT NOT NULL,
+  "format_id" INTEGER NOT NULL REFERENCES "formats"("id"),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
