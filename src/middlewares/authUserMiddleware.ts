@@ -12,7 +12,7 @@ async function authenticateUser(req, res, next) {
   try {
     const user = jwt.verify(token, process.env.SECRET_TOKEN);
 
-    const sessionResult = await sessionRepository.getSessionByUserId(decoded.id);
+    const sessionResult = await sessionRepository.getSessionByUserId(user.id);
     if (sessionResult.rowCount === 0) {
       return res.status(404).send(clientError(404, 'User not found!'));
     }
