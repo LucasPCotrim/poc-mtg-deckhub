@@ -1,4 +1,4 @@
-CREATE DATABASE mtg_deckhub;
+CREATE DATABASE mtgdeckhub;
 
 CREATE TABLE "users" (
 	"id" SERIAL PRIMARY KEY,
@@ -33,7 +33,7 @@ CREATE TABLE "cards" (
   "mana_cost" TEXT NOT NULL,
   "cmc" INTEGER NOT NULL,
   "colors" VARCHAR(5) NOT NULL,
-  "color_indentity" VARCHAR(5) NOT NULL,
+  "color_identity" VARCHAR(5) NOT NULL,
   "released_at" DATE NOT NULL,
   "scryfall_uri" TEXT NOT NULL,
   "image_uri" TEXT NOT NULL,
