@@ -1,8 +1,9 @@
 import db from '../database/index.js';
 import { PaginationConfig } from './../protocols/configs.js';
 import { Card } from './../protocols/card.js';
+import { QueryResult } from 'pg';
 
-async function getCards(config: PaginationConfig) {
+async function getCards(config: PaginationConfig): Promise<QueryResult> {
   const { limit, offset } = config;
   return db.query(
     `SELECT * FROM cards c
@@ -12,7 +13,7 @@ async function getCards(config: PaginationConfig) {
   );
 }
 
-async function insertCard(card: Card) {
+async function insertCard(card: Card): Promise<QueryResult> {
   return db.query(
     `INSERT INTO cards
       ("scryfall_id",
