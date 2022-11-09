@@ -5,14 +5,14 @@ CREATE TABLE "users" (
 	"name" TEXT NOT NULL,
 	"email" TEXT UNIQUE NOT NULL,
 	"password" TEXT NOT NULL,
-	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
+	"created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE "sessions" (
 	"id" SERIAL PRIMARY KEY,
-	"userId" INTEGER NOT NULL REFERENCES "users"("id"),
+	"user_id" INTEGER NOT NULL REFERENCES "users"("id"),
 	"token" TEXT UNIQUE NOT NULL,
-	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
+	"created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE "decks" (
@@ -20,7 +20,7 @@ CREATE TABLE "decks" (
   "user_id" INTEGER NOT NULL REFERENCES "users"("id"),
   "name" TEXT NOT NULL,
   "format" TEXT NOT NULL,
-  "createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
+  "created_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE "cards" (
