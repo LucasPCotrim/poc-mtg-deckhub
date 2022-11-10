@@ -1,5 +1,5 @@
 {
-  "deckName": "Deck1",
+  "deckName": "deck1",
   "formatName": "modern",
   "cards": [
     {
@@ -11,15 +11,15 @@
       "amount": 4
     },
     {
-      "cardName": "Ledger Shredder",
+      "cardName": "Pteramander",
       "amount": 3
     },
     {
-      "cardName": "Brazen Borrower // Petty Theft",
+      "cardName": "Mindlink Mech",
       "amount": 1
     },
     {
-      "cardName": "Murktide Regent",
+      "cardName": "Dazzling Sphinx",
       "amount": 2
     },
     {
@@ -31,19 +31,19 @@
       "amount": 4
     },
     {
-      "cardName": "Spell Pierce",
+      "cardName": "Ponder",
       "amount": 3
     },
     {
-      "cardName": "Unholy Heat",
+      "cardName": "Chain of Plasma",
       "amount": 4
     },
     {
-      "cardName": "Mana Leak",
+      "cardName": "Negate",
       "amount": 4
     },
     {
-      "cardName": "Expressive Iteration",
+      "cardName": "Blue Elemental Blast",
       "amount": 4
     },
     {
@@ -51,39 +51,23 @@
       "amount": 4
     },
     {
-      "cardName": "Blood Moon",
+      "cardName": "Lava Spike",
       "amount": 2
     },
     {
       "cardName": "Fiery Islet",
-      "amount": 1
-    },
-    {
-      "cardName": "Flooded Strand",
-      "amount": 2
-    },
-    {
-      "cardName": "Island",
-      "amount": 3
+      "amount": 4
     },
     {
       "cardName": "Misty Rainforest",
-      "amount": 2
+      "amount": 4
     },
     {
-      "cardName": "Otawara, Soaring City",
-      "amount": 1
+      "cardName": "Lotus Vale",
+      "amount": 4
     },
     {
-      "cardName": "Polluted Delta",
-      "amount": 2
-    },
-    {
-      "cardName": "Scalding Tarn",
-      "amount": 1
-    },
-    {
-      "cardName": "Spirebluff Canal",
+      "cardName": "Hall of Storm Giants",
       "amount": 4
     },
     {

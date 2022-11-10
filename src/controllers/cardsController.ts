@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import cardsRepository from '../repositories/cardsRepository.js';
-import cards from '../database/cards.js';
+import cards from '../database/cardsReducedSize.js';
 import { clientError } from '../errors/clientError.js';
 import { serverError } from '../errors/serverError.js';
 dotenv.config();
