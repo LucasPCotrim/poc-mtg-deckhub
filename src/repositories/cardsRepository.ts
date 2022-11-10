@@ -50,7 +50,6 @@ async function insertCard(card: Card): Promise<QueryResult> {
 }
 
 async function getCardByName(name: string): Promise<QueryResult> {
-  console.log('--------------------------getCardByName');
   return db.query(
     `SELECT * FROM cards
     WHERE name ILIKE $token$${name}$token$`

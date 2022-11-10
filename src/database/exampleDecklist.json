@@ -1,5 +1,5 @@
 {
-  "deckName": "Deck1Updated",
+  "deckName": "Deck1",
   "formatName": "modern",
   "cards": [
     {
@@ -15,7 +15,7 @@
       "amount": 3
     },
     {
-      "cardName": "Brazen Borrower",
+      "cardName": "Brazen Borrower // Petty Theft",
       "amount": 1
     },
     {

@@ -3,7 +3,12 @@ import { authenticateUser } from '../middlewares/authUserMiddleware.js';
 import validateSchema from './../middlewares/validateSchema.js';
 import newDeckSchema from '../schemas/newDeckSchema.js';
 import updateDeckSchema from '../schemas/updateDeckSchema.js';
-import { getUserDecks, createUserDeck, updateUserDeck } from '../controllers/decksController.js';
+import {
+  getUserDecks,
+  createUserDeck,
+  updateUserDeck,
+  deleteUserDeck,
+} from '../controllers/decksController.js';
 
 const decksRouter = express.Router();
 
@@ -15,5 +20,6 @@ decksRouter.put(
   validateSchema(updateDeckSchema),
   updateUserDeck
 );
+decksRouter.delete('/my-decks/:deckName', authenticateUser, deleteUserDeck);
 
 export default decksRouter;
