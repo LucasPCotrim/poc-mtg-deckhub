@@ -146,6 +146,8 @@ Deletes deck with given name from the database.
 * Send an http GET request to the route /cards/fill-database in order to initially fill the database with cards
 * Sign-up, login and send the contents of the file examples/exampleDecklist.json to the route POST /my-decks in order to create your first deck
 
+* Alternatively, you can run the mtgdeckhub_dump.sql file in order to create and fill the database tables with cards and decks
+
 
 
 ## Database
