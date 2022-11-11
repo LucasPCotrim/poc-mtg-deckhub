@@ -17,7 +17,7 @@ Currently there is no front-end for this application.
 Route deisgned to initially load the cards SQL table from cards.js file. The password is defined in the .env file.
 Due to the file size, a reduced version of cards.js was uploaded to Github as cardsReducedSize.js.
 Users who want to use the complete database (over 27K cards) can download it here:
-[Scryfall API - Oracle Cards Bulk Data File](https://scryfall.com/docs/api/bulk-data)
+[Scryfall API](https://scryfall.com/docs/api/bulk-data)
 
 #### Headers
 | Parameter   | Type       | Description                           |
@@ -135,10 +135,25 @@ Deletes deck with given name from the database.
 
 
 
+## How to use this application
+
+* Clone this repository
+* Download the necessary libraries with ```npm i```
+* (Optional) Download the Bulk Data File from [Scryfall API - Oracle Cards Bulk Data File]([https://scryfall.com/docs/api/bulk-data](https://data.scryfall.io/oracle-cards/oracle-cards-20221110220303.json)) and add it to the database folder as a javascript file (cards.js), update the imported file in CardsController.js in order to use the complete database of cards (>27K) instead of the reduced one provided in this repository (~10K)
+* Create a postgreSQL database named *mtgdeckhub* and run the table creation queries in the database/createTables.sql file
+* Create and fill a .env file with the variables specified in .env.example
+* Run the server with ```npm run dev```
+* Send an http GET request to the route /cards/fill-database as specified above
+* Sign-up, login and send the contents of the file examples/exampleDecklist.json to the route POST /my-decks in order to create your first deck
+
+
+
 
 ## Deploy
 
 To be done...
+
+
 
   
 ## Author
