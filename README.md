@@ -148,6 +148,8 @@ Deletes deck with given name from the database.
 
 
 
+## Database
+<img src="https://github.com/LucasPCotrim/poc-mtg-deckhub/blob/main/readme_files/DatabaseDiagram.png" />
 
 ## Deploy
 
