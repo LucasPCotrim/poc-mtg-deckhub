@@ -140,7 +140,7 @@ Deletes deck with given name from the database.
 * Clone this repository
 * Download the necessary libraries with ```npm i```
 * (Optional) Download the Bulk Data File from [Scryfall API - Oracle Cards Bulk Data File]([https://scryfall.com/docs/api/bulk-data](https://data.scryfall.io/oracle-cards/oracle-cards-20221110220303.json)) and add it to the database folder as a javascript file (cards.js), update the imported file in CardsController.js in order to use the complete database of cards (>27K) instead of the reduced one provided in this repository (~10K)
-* Create a postgreSQL database named *mtgdeckhub* and run the table creation queries in the database/createTables.sql file
+* Create a postgreSQL database named *mtgdeckhub* and run the table creation queries in database/createTables.sql
 * Create and fill a .env file with the variables specified in .env.example
 * Run the server with ```npm run dev```
 * Send an http GET request to the route /cards/fill-database as specified above
