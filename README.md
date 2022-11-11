@@ -8,11 +8,13 @@ Currently there is no front-end for this application.
 
 ## API Documentation
 
-### Fill-Database
+
+
+### Fill database
 ```
   POST /cards/fill-database
 ```
-Route deisgned to initially load the cards SQL table from cards.js file. The password is defined in the .env environment.
+Route deisgned to initially load the cards SQL table from cards.js file. The password is defined in the .env file.
 Due to the file size, a reduced version of cards.js was uploaded to Github as cardsReducedSize.js.
 Users who want to use the complete database (over 27K cards) can download it here:
 [Scryfall API - Oracle Cards Bulk Data File](https://scryfall.com/docs/api/bulk-data)
@@ -20,7 +22,7 @@ Users who want to use the complete database (over 27K cards) can download it her
 #### Headers
 | Parameter   | Type       | Description                           |
 | :---------- | :--------- | :---------------------------------- |
-| `Authorization` | `string` | 'Admin <password>' |
+| `Authorization` | `string` | 'Admin password_string' |
 
 
 
@@ -54,7 +56,7 @@ Allows users to login to the API, returns an object {token: token_string} which 
 
 
 
-### Get User Info
+### Get user info
 ```
   GET /me/info
 ```
@@ -67,8 +69,70 @@ Returns complete user info: name, email, number of decks, collection value, arra
 
 
 
+### Get user decks
+```
+  GET /my-decks
+```
+Returns array of user decks.
 
-### Documentation to be completed...
+#### Headers
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `Authorization` | `string` | 'Bearer token_string' |
+
+
+
+### Post user deck
+```
+  POST /my-decks
+```
+Create a deck.
+
+#### Headers
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `Authorization` | `string` | 'Bearer token_string' |
+
+#### Body
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `deckName` | `string` | Deck name |
+| `formatName` | `string` | Format name ('standard', 'modern', 'pauper', 'commander', etc) |
+| `cards` | `array` | Array of card objects of the type {cardName, amount} |
+
+
+
+
+### Update user deck
+```
+  PUT /my-decks/:deckName
+```
+Updated user deck with specified name using the given parameters. Parameters which were not sent won't be updated.
+#### Headers
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `Authorization` | `string` | 'Bearer token_string' |
+
+#### Body
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `deckName` | `string` | Deck name |
+| `formatName` | `string` | Format name ('standard', 'modern', 'pauper', 'commander', etc) |
+| `cards` | `array` | Array of card objects of the type {cardName, amount} |
+
+
+
+
+### Delete user deck
+```
+  DELETE /my-decks/:deckName
+```
+Deletes deck with given name from the database.
+#### Headers
+| Parameter   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `Authorization` | `string` | 'Bearer token_string' |
+
 
 
 
