@@ -143,7 +143,7 @@ Deletes deck with given name from the database.
 * Create a postgreSQL database named *mtgdeckhub* and run the table creation queries in database/createTables.sql
 * Create and fill a .env file with the variables specified in .env.example
 * Run the server with ```npm run dev```
-* Send an http GET request to the route /cards/fill-database as specified above
+* Send an http GET request to the route /cards/fill-database in order to initially fill the database with cards
 * Sign-up, login and send the contents of the file examples/exampleDecklist.json to the route POST /my-decks in order to create your first deck
 
 
